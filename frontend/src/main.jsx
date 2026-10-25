@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import './styles.css'
-const API = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const API = (import.meta.env.VITE_API_URL || 'https://backend-one-iota-45.vercel.app').replace(/\/+$/, '')
 function App() {
   const [data, setData] = useState(null), [error, setError] = useState('')
   useEffect(() => { fetch(`${API}/api/analysis`).then(r => { if (!r.ok) throw new Error('The Elexon data request failed.') ; return r.json() }).then(setData).catch(e => setError(e.message)) }, [])
